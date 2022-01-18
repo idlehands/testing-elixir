@@ -60,7 +60,7 @@ CMD [ "bash" ]
 #                       ci                       #
 # —————————————————————————————————————————————— #
 
-FROM hexpm/elixir:1.8.2-erlang-22.3.4.24-ubuntu-focal-20210325 as elixir
+FROM hexpm/elixir:1.9.4-erlang-22.3.4.24-ubuntu-focal-20210325 as elixir
 # Install hex and rebar
 RUN set -e \
   && mix local.hex --force \
