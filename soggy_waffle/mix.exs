@@ -1,11 +1,11 @@
-#---
+# ---
 # Excerpted from "Testing Elixir",
 # published by The Pragmatic Bookshelf.
 # Copyrights apply to this code. It may not be used to create training material,
 # courses, books, articles, and the like. Contact us if you are in doubt.
 # We make no guarantees that this code is fit for any purpose.
 # Visit http://www.pragmaticprogrammer.com/titles/lmelixir for more book information.
-#---
+# ---
 defmodule SoggyWaffle.MixProject do
   use Mix.Project
 
@@ -15,9 +15,13 @@ defmodule SoggyWaffle.MixProject do
       version: "0.1.0",
       elixir: "~> 1.9",
       start_permanent: Mix.env() == :prod,
-      deps: deps()
+      deps: deps(),
+      elixirc_paths: elixirc_paths(Mix.env())
     ]
   end
+
+  defp elixirc_paths(:test), do: ["lib", "test/support"]
+  defp elixirc_paths(_env), do: ["lib"]
 
   # Run "mix help compile.app" to learn about applications.
   def application do
@@ -32,7 +36,8 @@ defmodule SoggyWaffle.MixProject do
       {:httpoison, "~> 1.6"},
       {:jason, "~> 1.1"},
       # test only
-      {:exvcr, "~> 0.11.0", only: [:test]}
+      {:exvcr, "~> 0.11.0", only: [:test]},
+      {:mox, ">= 0.0.0", only: :test}
     ]
   end
 end

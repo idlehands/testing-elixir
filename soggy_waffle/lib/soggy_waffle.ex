@@ -15,7 +15,12 @@ defmodule SoggyWaffle do
         SoggyWaffle.WeatherAPI
       )
 
-    with {:ok, response} <- weather_api_module.get_forecast(city) do
+    weather_api_task =
+      Task.async(fn ->
+        weather_api_module.get_forecast(city)
+      end)
+
+    with {:ok, response} <- Task.await(weather_api_task) do
       {:ok, weather_data} =
         SoggyWaffle.WeatherAPI.ResponseParser.parse_response(response)
 
