@@ -3,6 +3,8 @@ defmodule SoggyWaffle.NoOpWeatherAPI do
 
   @spec get_forecast(String.t()) :: {:ok, map()}
   def get_forecast(city) do
+    IO.puts(__MODULE__)
+
     response = %{
       "list" => [
         %{

@@ -7,6 +7,8 @@ defmodule SoggyWaffle.FakeWeatherAPI do
   def get_forecast(city) do
     _ = Logger.info("Getting forecast for city: #{city}")
 
+    IO.puts(__MODULE__)
+
     now = DateTime.utc_now()
     future_unix = DateTime.to_unix(now) + 1
 

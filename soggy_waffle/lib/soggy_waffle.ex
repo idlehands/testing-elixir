@@ -7,17 +7,16 @@
 # Visit http://www.pragmaticprogrammer.com/titles/lmelixir for more book information.
 # ---
 defmodule SoggyWaffle do
-  def rain?(city, datetime) do
-    weather_api_module =
-      Application.get_env(
-        :soggy_waffle,
-        :weather_api_module,
-        SoggyWaffle.WeatherAPI
-      )
+  @weather_api_module Application.compile_env(
+                        :soggy_waffle,
+                        :weather_api_module,
+                        SoggyWaffle.WeatherAPI
+                      )
 
+  def rain?(city, datetime) do
     weather_api_task =
       Task.async(fn ->
-        weather_api_module.get_forecast(city)
+        @weather_api_module.get_forecast(city)
       end)
 
     with {:ok, response} <- Task.await(weather_api_task) do
