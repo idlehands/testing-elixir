@@ -13,7 +13,7 @@ defmodule SoggyWaffle.MixProject do
     [
       app: :soggy_waffle,
       version: "0.1.0",
-      elixir: "~> 1.9",
+      elixir: "~> 1.10.4",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
       elixirc_paths: elixirc_paths(Mix.env())
